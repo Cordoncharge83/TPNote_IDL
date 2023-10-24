@@ -18,11 +18,12 @@ public class TestPlace {
 		//On test cette methode pour une place nommee "place1"
 		Place place1 = new Place("place1", 10);
 		assertTrue(place1.getName().equals("place1"));
+
 		
 	}
 	
 	@Test
-	public void testDetNameNull() {
+	public void testGetNameNull() {
 		//On regarde si le nom de place1 est bien PLACE quand le nom d'entree est egale a null
 		Place place1 = new Place(null, 10);
 		assertTrue(place1.getName().equals("PLACE"));
@@ -34,5 +35,17 @@ public class TestPlace {
 		//Idem avec le constructeur par default
 		Place place3 = new Place();
 		assertTrue(place3.getName().equals("P_3"));
+	}
+	
+	@Test
+	public void testToString() {
+		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
+		Place p = new Place ("Place1", 5);
+		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
+	}
+	
+	@Test
+	public void testGetTokens() {
+		//on test la méthode getTokens appliquée 
 	}
 }
