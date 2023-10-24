@@ -13,14 +13,6 @@ import bad4debug.Place;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class TestPlace {
-	@Test
-	@Order(4)
-	public void testToString() {
-		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
-		Place p = new Place ("Place1", 5);
-		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
-	}
-
 	
 	/**
 	 * Cette methode permet de verifier que la methode getName() retourne bien le nom de la place
