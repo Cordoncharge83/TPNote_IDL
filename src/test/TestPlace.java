@@ -4,12 +4,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
+
 
 import bad4debug.Place;
 
+@TestMethodOrder(MethodOrderer.class)
+
 public class TestPlace {
+
 	
 	/**
 	 * Cette methode permet de verifier que la methode getName() retourne bien le nom de la place
@@ -51,6 +56,27 @@ public class TestPlace {
 		Place place1 = new Place();
 		Place place2 = new Place("P_0",0);
 		
+		
+	}
+	
+	@Test
+	public void testToString() {
+		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
+		Place p = new Place ("Place1", 5);
+		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
+	}
+	
+	@Test
+	public void testGetTokens() {
+		//on test la méthode getTokens appliquée à différentes valeurs de Tokens
+		Place p1 = new Place(10);
+		assertEquals(p1.getTokens(),10);
+		Place p2 = new Place(0);
+		assertEquals(p2.getTokens(),0);
+		Place p3 = new Place(-10);
+		assertEquals(p3.getTokens(),10);
+		Place p4 = new Place("place", -5);
+		assertEquals(p4.getTokens(),-5);
 		
 	}
 }
