@@ -227,4 +227,9 @@ public class Place {
 		return true;
 	}
 	
+	//On cree cette methode pour pouvoir reinitialiser entre chaque test NB_PLACE pour eviter les effets
+	//de bords entre chaque tests (pour eviter que le nombre de place depende de l'ordre des tests)
+	public static void nbPlaceReinitialization()  {
+		NB_PLACE = 0;
+	}
 } // end Place
