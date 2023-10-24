@@ -4,16 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
-
 
 import bad4debug.Place;
 
-@TestMethodOrder(MethodOrderer.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class TestPlace {
+	@Test
+	@Order(4)
+	public void testToString() {
+		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
+		Place p = new Place ("Place1", 5);
+		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
+	}
 
 	
 	/**
@@ -21,7 +27,7 @@ public class TestPlace {
 	 * @author Gabriel
 	 */
 	@Test
-	@Order(2)
+	@Order(1)
 	public void testGetName() {
 		//On test cette methode pour une place nommee "place1"
 		Place place1 = new Place("place1", 10);
@@ -31,19 +37,19 @@ public class TestPlace {
 	}
 	
 	@Test
-	@Order(1)
+	@Order(2)
 	public void testGetNameNull() {
 		//On regarde si le nom de place1 est bien PLACE quand le nom d'entree est egale a null
 		Place place1 = new Place(10);
-		assertEquals(place1.getName(),"P_0");
+		assertEquals(place1.getName(),"P_1");
 		
 		//On test cette methode pour une place dont on a pas donne de nom
 		Place place2 = new Place(40);
-		assertEquals(place2.getName(),"P_1"); //On a cree deux places pour le moment et le compte commence a zero	
+		assertEquals(place2.getName(),"P_2"); //On a cree deux places pour le moment et le compte commence a zero	
 		
 		//Idem avec le constructeur par default
 		Place place3 = new Place();
-		assertTrue(place3.getName().equals("P_2"));
+		assertTrue(place3.getName().equals("P_3"));
 		
 		//Enfin, on test quand le nom de la place est null
 		Place place4 = new Place(null,10);
@@ -59,14 +65,10 @@ public class TestPlace {
 		
 	}
 	
-	@Test
-	public void testToString() {
-		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
-		Place p = new Place ("Place1", 5);
-		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
-	}
+	
 	
 	@Test
+	@Order(5)
 	public void testGetTokens() {
 		//on test la méthode getTokens appliquée à différentes valeurs de Tokens
 		Place p1 = new Place(10);
@@ -78,5 +80,17 @@ public class TestPlace {
 		Place p4 = new Place("place", -5);
 		assertEquals(p4.getTokens(),-5);
 		
+	}
+	@Test
+	public void testRemoveTokens() {
+		Place p1 = new Place(10);
+		p1.removeTokens(6);
+		assertEquals(p1.getTokens(),4);
+		Place p2 = new Place(10);
+		p2.removeTokens(-3);
+		assertEquals(p2.getTokens(),0);
+		Place p3 = new Place(10);
+		p3.removeTokens(0);
+		assertEquals(p3.getTokens(),0);
 	}
 }
