@@ -55,7 +55,7 @@ public class Place {
 			this.name = name;
 		}
 		++NB_PLACE;
-		this.tokens = n;
+		this.tokens = Math.abs(n);
 		this.sortants = new Vector<Arc>();
 		this.entrants = new Vector<Arc>();
 	}
