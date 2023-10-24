@@ -4,16 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
-
 
 import bad4debug.Place;
 
-@TestMethodOrder(MethodOrderer.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class TestPlace {
+	@Test
+	@Order(4)
+	public void testToString() {
+		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
+		Place p = new Place ("Place1", 5);
+		assertTrue(p.toString().equals("Place: " + "Place1" + " = " + 5 + "\n"));
+	}
 
 	
 	/**
@@ -59,6 +65,7 @@ public class TestPlace {
 		
 	}
 	
+
 	@Test
 	public void testToString() {
 		//on test la méthode toString appliquée à une place définie par son nom et ses jetons
@@ -67,8 +74,10 @@ public class TestPlace {
 		//On reinitialise NB_PLACE pour eviter les effets de bords
 		Place.nbPlaceReinitialization();
 	}
+
 	
 	@Test
+	@Order(5)
 	public void testGetTokens() {
 		//on test la méthode getTokens appliquée à différentes valeurs de Tokens
 		Place p1 = new Place(10);
@@ -82,5 +91,17 @@ public class TestPlace {
 		//On reinitialise NB_PLACE pour eviter les effets de bords
 				Place.nbPlaceReinitialization();
 		
+	}
+	@Test
+	public void testRemoveTokens() {
+		Place p1 = new Place(10);
+		p1.removeTokens(6);
+		assertEquals(p1.getTokens(),4);
+		Place p2 = new Place(10);
+		p2.removeTokens(-3);
+		assertEquals(p2.getTokens(),0);
+		Place p3 = new Place(10);
+		p3.removeTokens(0);
+		assertEquals(p3.getTokens(),0);
 	}
 }
