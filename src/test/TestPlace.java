@@ -80,7 +80,7 @@ public class TestPlace {
 		Place p4 = new Place("place", -5);
 		assertEquals(p4.getTokens(),-5);
 		//On reinitialise NB_PLACE pour eviter les effets de bords
-				Place.nbPlaceReinitialization();
+		Place.nbPlaceReinitialization();
 		
 	}
 }
