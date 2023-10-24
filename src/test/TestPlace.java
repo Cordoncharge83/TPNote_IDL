@@ -53,10 +53,59 @@ public class TestPlace {
 	@Test
 	public void testPlaceConstructorWithoutArgument() {
 		Place place1 = new Place();
-		Place place2 = new Place("P_0",0);
-		//On reinitialise NB_PLACE pour eviter les effets de bords
-				Place.nbPlaceReinitialization();
 		
+		//On verifie que les attributs de place1 sont bien ceux voulus
+		assertEquals(place1.getName(),"P_0");
+		assertEquals(place1.getTokens(),0);
+		
+		//On reinitialise NB_PLACE pour eviter les effets de bords
+		Place.nbPlaceReinitialization();
+		
+	}
+	
+	@Test
+	public void testPlaceConstructorOneArgument() {
+		//On test avec un nombre de jeton positif
+		Place place1 = new Place(10);
+		assertEquals(place1.getName(),"P_0");
+		assertEquals(place1.getTokens(),10);
+		
+		//On test avec un nombre de jeton nul
+		Place place2 = new Place(0);
+		assertEquals(place2.getName(),"P_1");
+		assertEquals(place2.getTokens(),0);
+		
+		
+		//On test avec un nombre de jeton negatif
+		Place place3 = new Place(-10);
+		assertEquals(place3.getName(),"P_2");
+		assertEquals(place3.getTokens(),10); //Normalement si le nombre de jeton donne en entree est negatif, on prend la valeur absolue
+		
+		//On reinitialise NB_PLACE pour eviter les effets de bords
+		Place.nbPlaceReinitialization();
+	}
+	
+	@Test
+	public void testPlaceConstructorBothArgument() {
+		//On test avec un nombre de jeton positif
+		Place place1 = new Place("place1", 10);
+		assertEquals(place1.getName(),"place1");
+		assertEquals(place1.getTokens(),10);
+		
+		//On test avec un nombre de jeton nul
+		Place place2 = new Place("place2", 0);
+		assertEquals(place2.getName(),"place2");
+		assertEquals(place2.getTokens(),0);
+		
+		//On test avec un nombre de jeton nul
+		Place place3 = new Place("place3", -10);
+		assertEquals(place2.getName(),"place3");
+		assertEquals(place2.getTokens(),10);  //Place a ete modifie CF test getToken()
+		
+		//On test avec un nom d'entree nul
+		Place place4 = new Place(null, 10);
+		assertEquals(place3.getName(),"PLACE");
+		assertEquals(place3.getTokens(),10);  //Place a ete modifie CF test getToken()
 	}
 	
 	@Test
