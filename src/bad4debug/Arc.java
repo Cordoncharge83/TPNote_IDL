@@ -6,6 +6,7 @@ package bad4debug;
  * @author jroyer
  *
  */
+
 public class Arc {
 	
 	/** The weight. */
@@ -51,7 +52,14 @@ public class Arc {
 	 * for the other case it is OK.
 	 * @return true, if is enabled
 	 */
+	/**
+	 * On ajoute une ligne qui retourne true si la source est une transition
+	 * @author Mouadh
+	 */
 	public boolean isEnable() {
+		if (this.source instanceof Transition) {
+			return true;
+		}
 		return ((Place) this.source).getTokens() >= this.weight;
 	}	
 	

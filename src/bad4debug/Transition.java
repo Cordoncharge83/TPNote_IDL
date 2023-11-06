@@ -205,6 +205,10 @@ public class Transition {
 		return true;
 	}
 	
-	
+	//On cree cette methode pour pouvoir reinitialiser entre chaque test nbTrans pour eviter les effets
+	//de bords entre chaque tests (pour eviter que le nombre de transitions depende de l'ordre des tests)
+	public static void nbTransReinitialization()  {
+		nbTrans = 0;
+	}
 
 }
