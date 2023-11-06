@@ -97,13 +97,16 @@ public class TestPlace {
 		
 		//On test avec un nombre de jeton nul
 		Place place3 = new Place("place3", -10);
-		assertEquals(place2.getName(),"place3");
-		assertEquals(place2.getTokens(),10);  //Place a ete modifie CF test getToken()
+		assertEquals(place3.getName(),"place3");
+		assertEquals(place3.getTokens(),10);  //Place a ete modifie CF test getToken()
 		
 		//On test avec un nom d'entree nul
 		Place place4 = new Place(null, 10);
-		assertEquals(place3.getName(),"PLACE");
-		assertEquals(place3.getTokens(),10);  //Place a ete modifie CF test getToken()
+		assertEquals(place4.getName(),"PLACE");
+		assertEquals(place4.getTokens(),10);  //Place a ete modifie CF test getToken()
+		//On reinitialise NB_PLACE pour eviter les effets de bords
+		Place.nbPlaceReinitialization();
+
 	}
 	
 
@@ -148,6 +151,17 @@ public class TestPlace {
 		Place p4 = new Place(10);
 		p4.removeTokens(100);
 		assertEquals(p4.getTokens(),0);
+		//On reinitialise NB_PLACE pour eviter les effets de bords
+		Place.nbPlaceReinitialization();
 		
+	}
+	
+	@Test
+	public void testAddTokens() {
+		Place p1 = new Place(5);
+		p1.addTokens(6);
+		assertEquals(p1.getTokens(),11);
+		//On reinitialise NB_PLACE pour eviter les effets de bords
+		Place.nbPlaceReinitialization();
 	}
 }
