@@ -115,4 +115,22 @@ public class Arc {
 			return ((Place) this.source).getName() + " --" + this.weight + "-> " + ((Transition) this.target).getName()  + "\n";
 			}
 	}
+	/**
+	 * On ajoute une méthode equals qui compare deux arcs et retourne true s'ils sont égaux 
+	 * pour faciliter les tests après
+	 * @author mouadh
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Arc other = (Arc) obj;
+		if ((this.weight == other.weight) && (this.source.equals(other.source)) && (this.target.equals(other.target)) ){
+			return true;
+		}
+		return false;
+	}
 }
